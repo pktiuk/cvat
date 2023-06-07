@@ -635,6 +635,7 @@ class LambdaJob:
                 box["path_id"] = path_id
 
         tracks = []
+        paths_source = SourceType.SEMI_AUTO if function.kind == LambdaType.INTERACTOR else SourceType.AUTO
         for path_id in paths:
             box0 = paths[path_id][0]
             tracks.append({
@@ -643,7 +644,7 @@ class LambdaJob:
                 "attributes": [],
                 "frame": box0["frame"],
                 "shapes": paths[path_id],
-                "source": str(SourceType.AUTO)
+                "source": str(paths_source)
             })
 
             for box in tracks[-1]["shapes"]:
